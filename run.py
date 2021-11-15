@@ -34,7 +34,7 @@ logging.debug(X_train_all.shape)
 y_preds = []
 models = []
 
-lgbm_params = config['lgbm_params']
+xgb_params = config['xgb_params']
 
 kf = KFold(n_splits=3, random_state=0, shuffle=True)
 for train_index, valid_index in kf.split(X_train_all):
@@ -43,9 +43,9 @@ for train_index, valid_index in kf.split(X_train_all):
     )
     y_train, y_valid = y_train_all[train_index], y_train_all[valid_index]
 
-    # lgbmの実行
+    # xgbの実行
     y_pred, model = train_and_predict(
-        X_train, X_valid, y_train, y_valid, X_test, lgbm_params
+        X_train, X_valid, y_train, y_valid, X_test, xgb_params
     )
 
     # 結果の保存
